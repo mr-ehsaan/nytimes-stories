@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import StoryCard from '../../components/StoryCard';
 import { fetchTopStories } from '../../services/storyService';
 import AppHeader from '../../components/Header';
-import { Col, Row } from 'antd';
+import { Col, Layout, Row } from 'antd';
 import './Home.scss'
 import { extractImageUrl } from '../../utils/utils';
+
+
+const { Header, Content } = Layout;
 
 const Home = () => {
   const [stories, setStories] = useState([]);
@@ -37,8 +40,11 @@ const Home = () => {
   }
 
   return (
-    <div>
+        
+    <Layout>
       <AppHeader onSearchChange={handleSearchChange} />
+      <Content>
+
       <Row className="story-container" justify={'center'} gutter={[25,25]}>
         {filteredStories.map(story => (
             <Col xs={24} sm={24} md={12} lg={8} xl={6}>
@@ -50,7 +56,8 @@ const Home = () => {
             </Col>
         ))}
       </Row>
-    </div>
+      </Content>
+      </Layout>
   );
 };
 
